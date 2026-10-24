@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e3a8a">
+  <title>FinanCont | Dashboard</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="../js/dashboard.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="dashboard.html" aria-label="FinanCont - início">
+        <span class="brand-mark">F</span>
+        <span class="brand-copy"><strong>FinanCont</strong><small>Gestão financeira</small></span>
+      </a>
+
+      <div class="workspace-label">MENU PRINCIPAL</div>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a class="nav-link active" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+        <a class="nav-link" href="lancamentos.html" data-demo-link><span class="nav-icon">⇄</span><span>Lançamentos</span></a>
+        <a class="nav-link" href="novo-lancamento.html" data-demo-link><span class="nav-icon">＋</span><span>Novo lançamento</span></a>
+        <a class="nav-link" href="#" data-demo-link><span class="nav-icon">▤</span><span>Contas a pagar/receber</span></a>
+        <a class="nav-link" href="#" data-demo-link><span class="nav-icon">◈</span><span>Categorias</span></a>
+        <a class="nav-link" href="#" data-demo-link><span class="nav-icon">▥</span><span>Relatórios</span></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">?</span>
+          <strong>Precisa de ajuda?</strong>
+          <p>Consulte o guia de utilização do FinanCont.</p>
+          <button type="button" id="helpButton">Ver orientações <span>→</span></button>
+        </div>
+        <button class="profile-button" type="button" id="profileButton">
+          <span class="avatar">AD</span>
+          <span class="profile-copy"><strong>Administrador</strong><small>Perfil de demonstração</small></span>
+          <span class="profile-more">•••</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+          <div><p class="eyebrow">VISÃO GERAL</p><h1>Dashboard</h1></div>
+        </div>
+        <div class="topbar-actions">
+          <label class="period-select"><span>Período</span>
+            <select id="periodFilter" aria-label="Selecionar período">
+              <option value="month">Este mês</option>
+              <option value="lastMonth">Mês passado</option>
+              <option value="year">Este ano</option>
+            </select>
+          </label>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Notificações">
+            ♧<span class="notification-dot"></span>
+          </button>
+          <div class="topbar-user"><span class="avatar">AD</span><span><strong>Administrador</strong><small>Administrador</small></span></div>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div><h2>Olá, Administrador <span class="wave">✦</span></h2><p>Aqui está o resumo financeiro do seu negócio.</p></div>
+        <button class="primary-button" id="newEntryButton"><span>＋</span> Novo lançamento</button>
+      </section>
+
+      <section class="stats-grid" aria-label="Resumo financeiro">
+        <article class="stat-card balance-card">
+          <div class="stat-top"><span class="stat-label">Saldo atual</span><span class="stat-icon balance-icon">▣</span></div>
+          <p class="stat-value" id="balanceValue">R$ 18.450,75</p>
+          <div class="stat-foot"><span class="trend positive">↗ 8,2%</span><span>vs. período anterior</span></div>
+          <div class="balance-decoration"></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-label">Receitas recebidas</span><span class="stat-icon income-icon">↙</span></div>
+          <p class="stat-value" id="incomeValue">R$ 24.800,00</p>
+          <div class="stat-foot"><span class="trend positive">↗ 12,5%</span><span>vs. período anterior</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-label">Despesas pagas</span><span class="stat-icon expense-icon">↗</span></div>
+          <p class="stat-value" id="expenseValue">R$ 6.349,25</p>
+          <div class="stat-foot"><span class="trend negative">↗ 3,1%</span><span>vs. período anterior</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-label">Contas a vencer</span><span class="stat-icon due-icon">◷</span></div>
+          <p class="stat-value" id="dueValue">R$ 2.180,00</p>
+          <div class="stat-foot"><span class="due-count" id="dueCount">4 contas</span><span>nos próximos 7 dias</span></div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div><h3>Fluxo financeiro</h3><p>Acompanhe receitas e despesas ao longo do tempo.</p></div>
+            <div class="chart-legend"><span><i class="legend-dot income-dot"></i>Receitas</span><span><i class="legend-dot expense-dot"></i>Despesas</span></div>
+          </div>
+          <div class="chart-wrap"><canvas id="financeChart" aria-label="Gráfico de receitas e despesas" role="img"></canvas></div>
+        </article>
+
+        <article class="panel due-panel">
+          <div class="panel-heading"><div><h3>Contas próximas do vencimento</h3><p>Não perca os prazos importantes.</p></div><button class="text-button" id="seeBillsButton">Ver todas <span>→</span></button></div>
+          <div class="bill-list" id="billList"></div>
+        </article>
+      </section>
+
+      <section class="panel transactions-panel">
+        <div class="panel-heading transactions-heading">
+          <div><h3>Últimos lançamentos</h3><p>Movimentações financeiras recentes.</p></div>
+          <div class="transaction-tools">
+            <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar lançamento..." aria-label="Buscar lançamento"></label>
+            <select id="typeFilter" class="type-filter" aria-label="Filtrar por tipo"><option value="all">Todos os tipos</option><option value="income">Receitas</option><option value="expense">Despesas</option></select>
+            <button class="text-button" id="seeTransactionsButton">Ver todos <span>→</span></button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>DESCRIÇÃO</th><th>CATEGORIA</th><th>DATA</th><th>TIPO</th><th>STATUS</th><th class="align-right">VALOR</th><th><span class="sr-only">Ações</span></th></tr></thead>
+            <tbody id="transactionTable"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" hidden>Nenhum lançamento encontrado com esses filtros.</div>
+        </div>
+        <div class="table-footer"><span id="resultCount">Mostrando 5 lançamentos</span><span class="mock-note">Dados demonstrativos</span></div>
+      </section>
+
+      <footer class="page-footer"><span>© 2026 FinanCont</span><span>Gestão financeira simples e organizada</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
