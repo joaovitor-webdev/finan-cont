@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lista de lançamentos financeiros com pesquisa e filtros em tempo real.">
+  <title>Lista de Lançamentos Financeiros</title>
+  <link rel="stylesheet" href="../css/lancamentos.css">
+  <script src="../js/lancamentos.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <div class="brand-mark" aria-hidden="true">LF</div>
+      <div>
+        <p class="eyebrow">CONTROLE FINANCEIRO</p>
+        <h1>Lista de lançamentos</h1>
+        <p class="subtitle">Consulte receitas e despesas em um só lugar.</p>
+      </div>
+    </header>
+
+    <section class="panel" aria-labelledby="filtros-titulo">
+      <div class="section-heading">
+        <div>
+          <h2 id="filtros-titulo">Lançamentos financeiros</h2>
+          <p>Use os filtros para encontrar um lançamento.</p>
+        </div>
+        <span id="total-registros" class="total-badge">15 lançamentos</span>
+      </div>
+
+      <div class="filters">
+        <label class="search-field" for="busca-descricao">
+          <span>Buscar descrição</span>
+          <input id="busca-descricao" type="search" placeholder="Ex.: aluguel, venda..." autocomplete="off">
+        </label>
+
+        <label class="type-field" for="filtro-tipo">
+          <span>Tipo de lançamento</span>
+          <select id="filtro-tipo">
+            <option value="todos">Todos</option>
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+          </select>
+        </label>
+
+        <label class="category-field" for="filtro-categoria">
+          <span>Categoria</span>
+          <select id="filtro-categoria">
+            <option value="todas">Todas as categorias</option>
+          </select>
+        </label>
+
+        <button id="limpar-filtros" class="clear-button" type="button">Limpar filtros</button>
+      </div>
+
+      <div class="table-summary" aria-live="polite">
+        <span id="resultado-texto">Exibindo todos os lançamentos</span>
+      </div>
+
+      <div class="table-scroll" role="region" aria-label="Tabela de lançamentos financeiros" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Descrição</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Data</th>
+              <th scope="col">Tipo</th>
+              <th scope="col" class="numeric">Valor</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-lancamentos">
+            <!-- O JavaScript insere as linhas da tabela aqui. -->
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <th scope="row" colspan="4">Total dos valores exibidos</th>
+              <td id="total-valores" class="numeric total-amount">R$ 0,00</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p id="mensagem-vazia" class="empty-state" hidden>Nenhum lançamento encontrado com esses filtros.</p>
+      <p class="footnote">Os dados exibidos são fictícios e servem apenas como demonstração.</p>
+    </section>
+    <footer>Lista de Lançamentos <span aria-hidden="true">•</span> HTML, CSS e JavaScript puro</footer>
+  </main>
+</body>
+</html>
